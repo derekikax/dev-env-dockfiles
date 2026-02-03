@@ -101,6 +101,7 @@ RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc \
     && echo 'eval "$(direnv hook bash)"' >> ~/.bashrc \
     && echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc \
     && echo 'alias ll="ls -alF"' >> ~/.bashrc \
-    && echo 'alias python="python3"' >> ~/.bashrc
+    && echo 'alias python="python3"' >> ~/.bashrc \
+    && mkdir -p ~/.cache && chown -R vscode:vscode ~/.cache
 
 WORKDIR /workspace
