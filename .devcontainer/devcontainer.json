@@ -1,22 +1,18 @@
 {
-  "name": "Ubuntu Dev Env",
+  "name": "Ubuntu Dev Env (WSL)",
   "build": {
-    "dockerfile": "../dev-env-dockfiles/Dockerfile",
+    "dockerfile": "../Dockerfile",
     "context": ".."
   },
-  "customizations": {
-    "vscode": {
-      "settings": {},
-      "extensions": [
-        "ms-python.python",
-        "ms-azuretools.vscode-docker"
-      ]
-    }
-  },
+  "remoteUser": "vscode",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached,readonly",
-    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached,readonly"
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached,readonly",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached,readonly",
+    "source=${localEnv:HOME}/.config/gcloud,target=/home/vscode/.config/gcloud,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/rclone,target=/home/vscode/.config/rclone,type=bind,consistency=cached",
+    "source=ccache-vol,target=/home/vscode/.ccache,type=volume",
+    "source=uv-cache-vol,target=/home/vscode/.cache/uv,type=volume"
   ]
 }
