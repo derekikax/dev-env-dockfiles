@@ -38,7 +38,8 @@ VS Code Dev Container 的設定檔。
 本專案提供兩種啟動模式的腳本：
 
 - **`launch-auto.sh` (自動模式 - 推薦)**
-  - 嘗試呼叫 `devcontainer` CLI 或 `code` / `cursor` 來啟動 VS Code 環境。
+  - 優先檢查並使用 `gemini` (Antigravity CLI) 啟動。
+  - 其次嘗試呼叫 `devcontainer` CLI 或 `code` / `cursor` 來啟動 VS Code 環境。
   - 這是最標準的使用方式，確保完全整合 IDE 功能。
 
 - **`launch-manual.sh` (手動模式 - 靈活)**
