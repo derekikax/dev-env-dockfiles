@@ -3,6 +3,14 @@ set -e
 
 echo "🤖 [自動模式] 準備呼叫 VS Code Dev Containers..."
 
+# 檢查是否安裝了 'gemini' (Antigravity CLI)
+if command -v gemini &> /dev/null; then
+    echo "✅ 偵測到 Gemini CLI (Antigravity)..."
+    echo "🚀 正在開啟 Antigravity..."
+    gemini .
+    exit 0
+fi
+
 # 檢查是否安裝了 'devcontainer' CLI (來自 npm install -g @devcontainers/cli)
 if command -v devcontainer &> /dev/null; then
     echo "✅ 偵測到 devcontainer CLI，正在開啟工作區..."
