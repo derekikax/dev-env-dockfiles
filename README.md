@@ -33,22 +33,35 @@ VS Code Dev Container 的設定檔。
 - 自動掛載 WSL Host 的 SSH Key (`~/.ssh`), Git Config (`~/.gitconfig`), Google Cloud (`~/.config/gcloud`) 與 Rclone 設定。
 - 設定快取卷 (Volume) 以加速 ccache 與 uv 下載。
 
-### 3. `launch.sh`
+### 3. 啟動腳本 (Launch Scripts)
 
-一個簡易的 Shell Script，用於在不使用 VS Code 的情況下，透過純 Docker 命令快速啟動此開發環境進行測試或臨時操作。
+本專案提供兩種啟動模式的腳本：
+
+- **`launch-auto.sh` (自動模式 - 推薦)**
+  - 嘗試呼叫 `devcontainer` CLI 或 `code` / `cursor` 來啟動 VS Code 環境。
+  - 這是最標準的使用方式，確保完全整合 IDE 功能。
+
+- **`launch-manual.sh` (手動模式 - 靈活)**
+  - 使用純 Docker 命令 (`docker run`) 啟動容器。
+  - 自動掛載所有必要的設定檔與 Volume。
+  - 適合不開啟 IDE，僅在終端機進行快速測試或維護時使用。
 
 ## 使用方式
 
 ### 透過 VS Code (推薦)
 
-1. 在 WSL 中開啟此專案資料夾 (`code .`)。
-2. 點擊左下角遠端狀態列，選擇 **"Reopen in Container"**。
-3. 等待建置完成即可開始開發。
-
-### 透過 Docker CLI
-
-執行腳本即可建置並進入環境：
+執行以下腳本自動開啟：
 
 ```bash
-./launch.sh
+./launch-auto.sh
+```
+
+或者手動在 VS Code 中選擇 **"Reopen in Container"**。
+
+### 透過 Docker CLI (手動)
+
+執行以下腳本進入容器終端機：
+
+```bash
+./launch-manual.sh
 ```
