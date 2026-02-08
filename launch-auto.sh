@@ -5,36 +5,31 @@ echo "🤖 [自動模式] 準備呼叫 VS Code Dev Containers..."
 
 # 檢查是否安裝了 'gemini' (Antigravity CLI)
 if command -v gemini &> /dev/null; then
-    echo "✅ 偵測到 Gemini CLI (Antigravity)..."
-    echo "🚀 正在開啟 Antigravity..."
+    echo "✅ 偵測到 Antigravity (Gemini) CLI..."
+    echo "🚀 正在開啟 Antigravity / Gemini..."
     gemini .
     exit 0
 fi
 
-# 檢查是否安裝了 'devcontainer' CLI (來自 npm install -g @devcontainers/cli)
+# 檢查是否安裝了 'devcontainer' CLI
 if command -v devcontainer &> /dev/null; then
     echo "✅ 偵測到 devcontainer CLI，正在開啟工作區..."
     devcontainer open .
     exit 0
 fi
 
-# 檢查是否安裝了 'code' (VS Code CLI)
+# 提示用戶在當前 IDE 中重新開啟
+echo "💡 提示：您似乎正在使用 Antigravity / Gemini IDE。"
+echo "請確保在 IDE 介面中選擇 'Reopen in Container' 以進入開發環境。"
+
+# 保留 VS Code 作為備援，但降低優先級，並移除 Cursor
 if command -v code &> /dev/null; then
-    echo "✅ 偵測到 VS Code CLI..."
-    echo "🚀 正在開啟 VS Code，請在視窗開啟後："
-    echo "   1. 點擊右下角通知 'Reopen in Container'"
-    echo "   2. 或按 F1 輸入 'Dev Containers: Reopen in Container'"
-    code .
+    echo "✅ 偵測到 VS Code CLI (備援)..."
+    echo "🚀 如果您需要切換到 VS Code，請執行："
+    echo "   code ."
     exit 0
 fi
 
-if command -v cursor &> /dev/null; then
-    echo "✅ 偵測到 Cursor CLI..."
-    echo "🚀 正在開啟 Cursor，請在視窗開啟後手動選擇 Reopen in Container。"
-    cursor .
-    exit 0
-fi
-
-echo "❌ 錯誤: 找不到 'devcontainer', 'code' 或 'cursor' 指令。"
-echo "請手動開啟您的 IDE 並載入此專案資料夾。"
+echo "❌ 錯誤: 找不到 'gemini' 或 'devcontainer' 指令。"
+echo "請手動在您的 Antigravity / Gemini IDE 中開啟工作區並 Reopen in Container。"
 exit 1

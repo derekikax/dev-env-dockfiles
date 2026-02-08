@@ -32,7 +32,7 @@ echo "ℹ️  輸入 'exit' 可退出並自動清理容器。"
 # 參數說明:
 # --user vscode: 對應 Dockerfile 中的非 root 使用者
 # -v ...: 對應 devcontainer.json 的 Mounts
-docker run --rm -it \
+docker run --rm -dit \
     --name $CONTAINER_NAME \
     --hostname dev-box-manual \
     --user vscode \
